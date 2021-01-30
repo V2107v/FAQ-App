@@ -1,8 +1,125 @@
 import 'package:flutter/material.dart';
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  Color backgroundColor = Colors.black;
+
+  Padding makeUI({Color color, String question, String answer}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: ExpansionTileCard(
+        expandedColor: color,
+        baseColor: color,
+        title: Text(
+          question,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 17.0,
+          ),
+        ),
+        children: <Widget>[
+          Divider(
+            thickness: 0.5,
+            height: 0.5,
+            color: Colors.black54,
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 12.0,
+              ),
+              child: Text(
+                answer,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Expanded(flex: 1, child: Image.asset('images/faq.png')),
+            Expanded(
+              flex: 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  makeUI(
+                      color: Colors.purple,
+                      question:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry?',
+                      answer:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem'
+                          'Ipsum has been the industry standard dummy text ever since the 1500s.'),
+                  makeUI(
+                      color: Colors.redAccent,
+                      question:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry?',
+                      answer:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem'
+                          'Ipsum has been the industry standard dummy text ever since the 1500s.'),
+                  makeUI(
+                      color: Colors.indigoAccent,
+                      question:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry?',
+                      answer:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem'
+                          'Ipsum has been the industry standard dummy text ever since the 1500s.'),
+                  makeUI(
+                      color: Colors.orange,
+                      question:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry?',
+                      answer:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem'
+                          'Ipsum has been the industry standard dummy text ever since the 1500s.'),
+                  makeUI(
+                      color: Colors.green,
+                      question:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry?',
+                      answer:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem'
+                          'Ipsum has been the industry standard dummy text ever since the 1500s.'),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+/*another method*/
+/**class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -63,14 +180,12 @@ class _MyAppState extends State<MyApp> {
           visible: isVisible[index],
           child: Padding(
             padding: EdgeInsets.all(8),
-            child: Expanded(
-              child: Text(
-                '$answer',
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Colors.white,
-                ),
+            child: Text(
+              '$answer',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.white,
               ),
             ),
           ),
@@ -148,4 +263,4 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-}
+} **/
